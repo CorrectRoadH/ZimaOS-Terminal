@@ -7,8 +7,8 @@
         },
         "prefetch": true,
         "show": true,
-        "entry": ":5000",
-        "icon": "/modules/zimaos_terminal/appicon.svg",
+        "entry": "/modules/zimaos_terminal/index.html",
+        "icon": "/modules/zimaos_terminal/appicon.ico",
         "description": "Assist",
         "formality": {
           "type": "newtab",
