@@ -26,7 +26,7 @@ jobs:
                 run: |
                     make
             -   run: |
-                    mv tty2web raw/usr/lib/zimaos_terminal
+                    mv tty2web raw/usr/bin/zimaos_terminal
             -   run: |
                     mksquashfs raw/ zimaos_terminal.raw
             -   name: '更新 Update release'
