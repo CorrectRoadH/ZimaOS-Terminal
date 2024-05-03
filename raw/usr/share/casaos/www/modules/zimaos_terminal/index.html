@@ -10,6 +10,9 @@
             var url = new URL(currentUrl);
             var newPort = 5555;  // 设置新的端口号
             url.port = newPort;  // 更改端口号
+            url.pathname = '';
+            url.search = '';
+            url.hash = '';
             window.location.href = url.href;  // 页面跳转到新的URL
         });
     </script>
