@@ -26,6 +26,7 @@ jobs:
                 run: |
                     make
             -   run: |
+                    mkdir -p raw/usr/bin
                     mv tty2web raw/usr/bin/zimaos_terminal
             -   run: |
                     mksquashfs raw/ zimaos_terminal.raw
