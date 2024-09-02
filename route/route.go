@@ -1,22 +1,25 @@
 package route
 
 import (
+	"crypto/ecdsa"
 	"fmt"
 	"math/rand"
 	"net/http"
 	"net/url"
 	"os/exec"
+	"strconv"
 	"strings"
 
+	"github.com/IceWhaleTech/CasaOS-Common/external"
+	"github.com/IceWhaleTech/CasaOS-Common/utils/jwt"
 	"github.com/getkin/kin-openapi/openapi3"
-	"github.com/getkin/kin-openapi/openapi3filter"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	echomiddleware "github.com/oapi-codegen/echo-middleware"
 
 	_ "embed"
 
 	"github.com/CorrectRoadH/ZimaOS-Terminal/codegen"
+	"github.com/CorrectRoadH/ZimaOS-Terminal/config"
 	"github.com/CorrectRoadH/ZimaOS-Terminal/service"
 )
 
@@ -62,8 +65,25 @@ func GetRouter() http.Handler {
 
 	e.Use(middleware.Logger())
 
-	e.Use(echomiddleware.OapiRequestValidatorWithOptions(_swagger, &echomiddleware.Options{
-		Options: openapi3filter.Options{AuthenticationFunc: openapi3filter.NoopAuthenticationFunc},
+	e.Use(middleware.JWTWithConfig(middleware.JWTConfig{
+		Skipper: func(c echo.Context) bool {
+			return c.RealIP() == "::1" || c.RealIP() == "127.0.0.1"
+		},
+		ParseTokenFunc: func(token string, c echo.Context) (interface{}, error) {
+			valid, claims, err := jwt.Validate(token, func() (*ecdsa.PublicKey, error) { return external.GetPublicKey(config.CommonInfo.RuntimePath) })
+			if err != nil || !valid {
+				return nil, echo.ErrUnauthorized
+			}
+
+			c.Request().Header.Set("user_id", strconv.Itoa(claims.ID))
+
+			return claims, nil
+		},
+		TokenLookupFuncs: []middleware.ValuesExtractor{
+			func(c echo.Context) ([]string, error) {
+				return []string{c.Request().Header.Get(echo.HeaderAuthorization)}, nil
+			},
+		},
 	}))
 
 	codegen.RegisterHandlersWithBaseURL(e, hello, APIPath)
