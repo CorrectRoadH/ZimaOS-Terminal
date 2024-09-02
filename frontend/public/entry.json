@@ -6,7 +6,7 @@
   "prefetch": true,
   "show": true,
   "entry": "/modules/zimaos-terminal/index.html",
-  "icon": "/modules/zimaos-terminal/vite.svg",
+  "icon": "/modules/zimaos-terminal/appicon.ico",
   "description": "ZimaOS Terminal",
   "formality": {
     "type": "newtab",
