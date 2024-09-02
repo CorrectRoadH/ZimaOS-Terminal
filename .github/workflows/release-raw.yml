@@ -68,7 +68,6 @@ jobs:
       - name: Move Frontend
         run: |
           mv ./frontend/dist ./raw/usr/share/casaos/www/modules/zimaos_terminal
-
       - run: |
           mksquashfs raw/ zimaos_terminal.raw
 
