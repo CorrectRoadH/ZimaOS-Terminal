@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import axios from 'axios';
+import zimaAuthAxios from './utils/axiosInstance';
+
 
 const { t } = useI18n();
 
 onMounted(async () => {
   window.document.title = t("title");
   // post /v2/terminal/terminal
-  const resp = await axios.post("/v2/terminal/terminal", {}, {
+  const resp = await zimaAuthAxios.post("/v2/terminal/terminal", {}, {
     headers: {
       "Content-Type": "application/json",
     },
