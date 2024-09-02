@@ -1,0 +1,28 @@
+{
+    "name": "zimaos_terminal",
+    "ui": {
+        "name": "zimaos_terminal",
+        "title": {
+          "en_us": "Terminal"
+        },
+        "prefetch": true,
+        "show": true,
+        "entry": "/modules/zimaos_terminal/index.html",
+        "icon": "/modules/zimaos_terminal/appicon.ico",
+        "description": "Assist",
+        "formality": {
+          "type": "newtab",
+          "props": {
+            "width": "100vh",
+            "height": "100vh",
+            "hasModalCard": true,
+            "animation": "zoom-in"
+          }
+        }
+    },
+    "services": [
+        {
+            "name": "zimaos-terminal"
+        }
+    ]     
+}

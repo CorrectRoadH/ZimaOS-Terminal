@@ -1,0 +1,61 @@
+openapi: 3.1.0
+
+info:
+  title: CasaOS Hello World API
+  version: v2
+
+servers:
+  - url: /v2/terminal
+
+paths:
+  /ping: # The URL path of the API will be /v2/hello_world/ping
+    get:
+      summary: Ping the API
+      operationId: ping
+      responses:
+        "200": # For simplicity, we only define the 200 response. In real world, you should define all possible responses, such as 4xx, 5xx, etc.
+          $ref: "#/components/responses/PongOK"
+
+  /terminal:
+    post:
+      summary: Open Terminal
+      operationId: OpenTerminal
+      responses:
+        "200":
+          $ref: "#/components/responses/OpenTerminalOK"
+
+components:
+  responses:
+    PongOK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/BaseResponse" # Inherit from BaseResponse
+              - properties:
+                  data:
+                    $ref: "#/components/schemas/Pong" # The `data` property contains the actual `Pong` we want to return
+    OpenTerminalOK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/BaseResponse" # Inherit from BaseResponse
+              - properties:
+                  port:
+                    type: integer
+                    description: The port number
+                    example: 8080
+
+  schemas:
+    BaseResponse: # Every response should inherit from BaseResponse
+      properties:
+        message:
+          description: message returned by server side if there is any
+          type: string
+
+    Pong:
+      type: string
+      example: Pong
