@@ -1,17 +1,17 @@
 <script setup lang="ts">
 const { t } = useI18n();
+import axios from 'axios';
 
 onMounted(async () => {
   window.document.title = t("title");
   // post /v2/terminal/terminal
-  const resp = await fetch("/v2/terminal/terminal", {
-    method: "POST",
+  const resp = await axios.post("/v2/terminal/terminal", {}, {
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  const data = await resp.json();
+  const data = resp.data;
   const port = data.port;
 
   const newUrl = `${window.location.protocol}//${window.location.hostname}:${port}/`;
