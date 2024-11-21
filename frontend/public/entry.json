@@ -1,0 +1,20 @@
+{
+  "name": "zimaos-terminal",
+  "title": {
+    "en_us": "Terminal"
+  },
+  "prefetch": true,
+  "show": true,
+  "entry": "/modules/zimaos-terminal/index.html",
+  "icon": "/modules/zimaos-terminal/appicon.ico",
+  "description": "ZimaOS Terminal",
+  "formality": {
+    "type": "newtab",
+    "props": {
+      "width": "100vh",
+      "height": "100vh",
+      "hasModalCard": true,
+      "animation": "zoom-in"
+    }
+  }
+}

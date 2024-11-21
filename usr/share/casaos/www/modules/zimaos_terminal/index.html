@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=redirect-url-placeholder">
+    <title>Redirecting</title>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            var currentUrl = window.location.href;  // 获取当前URL
+            var url = new URL(currentUrl);
+            var newPort = 5555;  // 设置新的端口号
+            url.port = newPort;  // 更改端口号
+            url.pathname = '';
+            url.search = '';
+            url.hash = '';
+            window.location.href = url.href;  // 页面跳转到新的URL
+        });
+    </script>
+</head>
+<body>
+    Terminal is Launching...
+</body>
+</html>

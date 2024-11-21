@@ -1,0 +1,12 @@
+[Unit]
+After=casaos-gateway.service
+After=casaos-message-bus.service
+After=casaos-user-service.service
+Description=ZimaOS Chat Service
+
+[Service]
+ExecStart=/usr/bin/zimaos_terminal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
