@@ -76,6 +76,7 @@ Your module package should be published to GitHub releases so that it can be ins
 
 ### Publishing to App Store
 Add your module application to `https://github.com/IceWhaleTech/Mod-Store/blob/main/mod-v2.json` by submitting a PR.
+
 Format:
 ```
 {
