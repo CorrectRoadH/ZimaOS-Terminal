@@ -53,9 +53,11 @@ This is used by systemd-sysext to identify the module
 
 ## Backend Components
 1. Binary Files
+
 Place executable binary files in the `raw/usr/bin` directory
 
 2. Systemd Service File (Optional)
+
 If your application needs to start on boot, you need to create a systemd service file and place it in the `raw/etc/systemd/system` directory. See `raw/usr/lib/systemd/system/zimaos-terminal.service` for reference
 
 ## Frontend
