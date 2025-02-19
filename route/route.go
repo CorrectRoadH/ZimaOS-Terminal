@@ -108,7 +108,7 @@ func (h *TerminalRouter) OpenTerminal(ctx echo.Context) error {
 	port := rand.Intn(40000) + 20000
 
 	// 执行ttyd命令
-	cmd := exec.Command("ttyd", "-p", fmt.Sprintf("%d", port), "-W", "-o", "exec", "btop")
+	cmd := exec.Command("ttyd", "-p", fmt.Sprintf("%d", port), "-W", "-o", "env", "SHELL=/bin/bash", "/usr/bin/btop")
 	if err := cmd.Start(); err != nil {
 		return ctx.JSON(http.StatusInternalServerError, "无法启动ttyd")
 	}
