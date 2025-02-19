@@ -77,6 +77,6 @@ jobs:
             token: ${{ secrets.CICD_GITHUB_TOKEN }}
             allow_override: true
             gzip: false
-            prerelease: true
+            prerelease: false
             tag: ${{ steps.get_version.outputs.VERSION }}
             files: ./zimaos_terminal.raw
